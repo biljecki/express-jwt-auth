@@ -1,0 +1,28 @@
+{
+  "name": "cc_sports_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dejan Biljecki",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "google-oauth-jwt": "^0.2.0",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.4",
+    "passport": "^0.4.0",
+    "passport-google-auth": "^1.0.2",
+    "passport-google-oauth-jwt": "^0.2.3",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-jwt": "^3.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
