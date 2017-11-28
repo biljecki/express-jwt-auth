@@ -20,8 +20,10 @@ app.use(require("./routes/auth-routes"));
 app.use(require("./routes/api-routes"));
 
 //error middleware
-app.use(function(err, req,res,next){    
-    res.status(422).send({err: err.message});
+app.use(function(err, req, res, next){    
+    res.status(422).send(
+        require("./helpers/error.helper").generateErrorResponse(err.message)
+    );
 });
 
 //listen for requests on port (read this from .env file (.env.PORT || 4400))

@@ -1,7 +1,6 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt');
-SALT_WORK_FACTOR = 10;
 
 //TODO: add validation, also for email to be valid only for specified domains (read this from .env)
 const UserSchema = new Schema({
@@ -45,7 +44,7 @@ UserSchema.pre('save', function(next) {
 
 });
 
-//not in use atm, doesnt work -> take a look at authenticateController.js/authenticate/bcrypt.compare
+//TODO: not in use atm, doesnt work -> take a look at authenticateController.js/authenticate/bcrypt.compare
 UserSchema.statics.comparePassword = function(clientPassword, dbPassword, cb) {    
     bcrypt.compare(clientPassword, dbPassword, function(err, isMatch) {
         if (err) return cb(err);
