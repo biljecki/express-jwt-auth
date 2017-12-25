@@ -12,8 +12,5 @@ module.exports.authorize = function(req, res, next){
             req.user = decodedUser;
             next();
         }
-    })
-   
+    });   
 }
-
-

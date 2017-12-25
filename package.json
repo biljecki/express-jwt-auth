@@ -13,15 +13,22 @@
     "body-parser": "^1.18.2",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
     "google-oauth-jwt": "^0.2.0",
     "joi": "^13.0.2",
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^4.13.4",
+    "mongoose-unique-validator": "^1.0.6",
+    "nodemailer": "^4.4.0",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "nodemailer-smtp-transport": "^2.7.4",
     "passport": "^0.4.0",
     "passport-google-auth": "^1.0.2",
     "passport-google-oauth-jwt": "^0.2.3",
     "passport-google-oauth20": "^1.0.0",
-    "passport-jwt": "^3.0.1"
+    "passport-jwt": "^3.0.1",
+    "randomstring": "^1.1.5",
+    "sendgrid": "^5.2.3"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"

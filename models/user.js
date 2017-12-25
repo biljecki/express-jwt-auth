@@ -1,6 +1,11 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
+
+var uniqueValidator = require('mongoose-unique-validator');
+
 const bcrypt = require('bcrypt');
+
+const mailer = require("../helpers/email.register.helper");
 
 //TODO: add validation, also for email to be valid only for specified domains (read this from .env)
 const UserSchema = new Schema({
@@ -24,9 +29,13 @@ const UserSchema = new Schema({
 
     activated: {
         type: Boolean,
-        default: true,
-    }
+        default: false,
+    },
 
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    }
 });
 
 UserSchema.pre('save', function(next) {
@@ -44,6 +53,10 @@ UserSchema.pre('save', function(next) {
 
 });
 
+UserSchema.post('save', function(next) {
+    console.log("user has been saved");
+});
+
 //TODO: not in use atm, doesnt work -> take a look at authenticateController.js/authenticate/bcrypt.compare
 UserSchema.statics.comparePassword = function(clientPassword, dbPassword, cb) {    
     bcrypt.compare(clientPassword, dbPassword, function(err, isMatch) {
@@ -52,6 +65,8 @@ UserSchema.statics.comparePassword = function(clientPassword, dbPassword, cb) {
     });
 };
 
+UserSchema.plugin(uniqueValidator);
+
 const User = mongoose.model('user', UserSchema)
 
-module.exports = User;
+module.exports = User; 

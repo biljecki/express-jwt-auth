@@ -15,18 +15,27 @@ module.exports.login = function(req, res, next){
 
         if (dbUser==null) return res.status(401).send(generateErrorResponse(401.1, "User not found"));
         bcrypt.compare(clientUser.password, dbUser.password).then(function(compareResult) {
-            if (compareResult) res.send(userToken());
+            if (compareResult) {
+                res.send(userToken(dbUser));
+            }
             else res.status(401).send(generateErrorResponse(401.2, "Wrong password"));
         });
     }).catch(next);
     
     //this function generates response data, combining user data and token
-    function userToken(){
-        delete clientUser.password;    
-        var token = jwt.sign(clientUser, process.env.JWT_SECRET_KEY, {
+    function userToken(dbUser){
+        var user = {            
+            username: dbUser.userName,
+            email: dbUser.email,
+            activated: dbUser.activated         
+        }
+        
+        if (dbUser.isAdmin) user.isAdmin = true;
+
+        var token = jwt.sign(user, process.env.JWT_SECRET_KEY, {
             expiresIn: 400000
         });
-        return {success:true, clientUser, token};
+        return {success:true, user, token};
     }
    
 }
